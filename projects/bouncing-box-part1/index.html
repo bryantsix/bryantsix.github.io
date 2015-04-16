@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		.box {
+			display: block;
+			position: absolute;
+			width: 110px;
+			height: 60px;
+			top: 100px;
+			left: 96px;
+			background-color: rgb(255,0,0);
+			font-size: 300%;
+			text-align: center;
+		}
+	</style>
+	
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">0</div>
+		
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		// Variable declarations
+		var box;
+		var boardWidth;
+		var update;
+		var handleBoxClick;
+		var position=0;
+		var points=6;
+		var speed=5;
+		var direction=1;
+		// jQuery stuff setup for you
+		box = $('.box');
+		boardWidth = $('.board').width();
+
+		// TODO 2
+		box.css('left',	100);
+		box.text(0);
+		// TODO 3 / 4
+		update = function() {
+			box.css('left',position);
+			box.text(points);
+			position = position + speed*direction;
+			if(position > boardWidth) {
+				direction = -1;
+				
+				
+			}
+			if (position < 0){
+				 direction = 1
+			}
+			
+		};
+
+		setInterval(update, 50);
+		
+		// TODO 5 / 6
+		handleBoxClick = function() {
+			points= points+1;
+			speed= speed+10;
+		};
+
+		// this calls the handle handleBoxClick function every time the box is clicked on
+		box.on('click', handleBoxClick);
+	</script>
+</body>
+</html>
